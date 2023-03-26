@@ -1,4 +1,23 @@
 {
+  "name": "focus_task",
+  "version": "1.0.0",
+  "description": "trabalho de conclusão de curso",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lisaguiar/focus_task.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lisaguiar/focus_task/issues"
+  },
+  "homepage": "https://github.com/lisaguiar/focus_task#readme",
   "dependencies": {
     "express": "^4.18.2",
     "node": "^19.8.1",
