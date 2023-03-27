@@ -25,12 +25,45 @@ export const register = (req, res) => {
             if (err) {
                 return res.json(err)
             }
-            return res.status(200).json("")
+            return res.status(200).json("Usuário cadastrado com sucesso!")
         })
     })
 }
 
 export const login = (req, res) => {
+    /* const q = "SELECT * FROM gerentes WHERE grt_email = ?"
+
+    db.query(q, [req.body.email], (err, data) => {
+        if (err) {
+            return res.json(err)
+        }
+        if (data.length === 0) {
+            const q = "SELECT * FROM vendedores WHERE vdd_email = ?"
+
+            db.query(q, [req.body.email], (err, data) => {
+                if (err) {
+                    return res.json(err)
+                }
+                if (data.length === 0) {
+                    return res.status(404).json("Usuário não encontrado")
+                } else {
+                    const senhaCorreta = bcrypt.compareSync(req.body.senha, data[0].vdd_senha)
+
+                    if (!senhaCorreta) {
+                        return res.status(400).json("Email ou senha incorretos!")
+                    }
+                }
+            })
+
+        } else {
+            const senhaCorreta = bcrypt.compareSync(req.body.senha, data[0].grt_senha)
+
+            if (!senhaCorreta) {
+                return res.status(400).json("Email ou senha incorretos!")
+            }
+        }
+    })
+    */
 }
 
 export const logout = (req, res) => {
