@@ -9,7 +9,7 @@
 
 body {
   display: flex;
-  background-image: url("../components/image6.png");
+  background-image: url("../images/image6.png");
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -234,7 +234,7 @@ input {
 }
 
 .overlay {
-  background-image: url('../components/image4.png');
+  background-image: url('../images/image4.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
