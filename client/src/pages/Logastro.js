@@ -86,7 +86,7 @@ const {register, formState: {errors, isValid}, handleSubmit} = useForm({
             </div>
 
             <div className="form-container login-container">
-                <form action="#">
+                <form action="/home">
                     <h1>Login</h1>
                     <input type="email" placeholder="Email" />
                     <input type="password" placeholder="Senha" />
