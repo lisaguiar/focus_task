@@ -96,7 +96,7 @@ const {register, formState: {errors, isValid}, handleSubmit} = useForm({
                             <label>lembre-me</label>
                         </div>
                         <div className="pass-link">
-                            <a href="#">Esqueci a senha</a>
+                            <a href="./">Esqueci a senha</a>
                         </div>
                     </div>
                     <button>Login</button>
