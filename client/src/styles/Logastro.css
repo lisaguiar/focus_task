@@ -7,7 +7,7 @@
   width: 15vw;
 }
 
-body {
+body:has(#container) {
   display: flex;
   background-image: url("../images/image6.png");
   justify-content: center;

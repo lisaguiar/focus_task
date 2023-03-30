@@ -141,7 +141,7 @@ const Logastro = () => {
                             <label>lembre-me</label>
                         </div>
                         <div className="pass-link">
-                            <a href="#">Esqueci a senha</a>
+                            <a href="./">Esqueci a senha</a>
                         </div>
                     </div>
                     <button disabled={!isValidLogin} type="submit">Login</button>

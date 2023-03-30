@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
 
+import Home from './pages/Home'
 import Logastro from './pages/Logastro'
 import Logado from './pages/Logado'
 import './App.css'
@@ -7,7 +8,7 @@ import './App.css'
 const Layout = () => {
   return (
     <>
-      <div className='container'>
+      <div>
         <Outlet/>
       </div>
     </>
@@ -17,7 +18,7 @@ const Layout = () => {
 const router = createBrowserRouter ([
   {
     path:'/', element: <Layout/>,
-    children: [
+    children:[
       {
         path:'/', element: <Logastro/>
       },
@@ -25,6 +26,7 @@ const router = createBrowserRouter ([
         path:'/logado', element: <Logado/>
       }
     ]
+    
   }
 ])
 

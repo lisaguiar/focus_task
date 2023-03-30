@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins");
+
+nav.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    padding: 10px 64px;
+
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.151); */
+    box-shadow: rgba(22, 22, 22, 0.12) 0px 1px 3px, rgba(255, 255, 255, 0.24) 0px 1px 2px;
+}
+
+nav.navbar img {
+    max-height: 90%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+nav.navbar ul {
+    display: flex;
+    gap: 36px;
+    align-items: center;
+    list-style-type: none;
+}
+
+nav.navbar li {
+    display: flex;
+    align-items: center;
+}
