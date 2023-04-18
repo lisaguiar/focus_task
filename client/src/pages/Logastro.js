@@ -57,7 +57,7 @@ const Logastro = () => {
         try {   
             const res = await login(inputsLogin)
             console.log(res)
-            navigate('/logado')
+            navigate('/home')
         } catch (err) {
             setErr(err.response.data)
             console.log(err)

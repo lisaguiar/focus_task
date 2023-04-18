@@ -1,5 +1,5 @@
-import React from 'react'
-import '../styles/UserDashboard.css'
+import React from 'react';
+import '../styles/UserDashboard.css';
 
 function UserDashboard() {
   return (
@@ -16,6 +16,8 @@ function UserDashboard() {
             <hr></hr>
             <p>Nenhum arquivo encontrado</p>
         </div>
+
+        {/* <textarea rows={1} placeholder='Digite sua anotação!' style={{width: 500 + "px", minHeight: "min-content", border: "none", fontWeight: 700}}></textarea> */}
         
 
     </main>

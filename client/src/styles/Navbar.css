@@ -7,7 +7,6 @@ nav.navbar {
     height: 70px;
     padding: 10px 64px;
 
-    /* border-bottom: 1px solid rgba(0, 0, 0, 0.151); */
     box-shadow: rgba(22, 22, 22, 0.12) 0px 1px 3px, rgba(255, 255, 255, 0.24) 0px 1px 2px;
 }
 
@@ -19,7 +18,7 @@ nav.navbar img {
 
 nav.navbar ul {
     display: flex;
-    gap: 36px;
+    gap: 20px;
     align-items: center;
     list-style-type: none;
 }
@@ -27,4 +26,18 @@ nav.navbar ul {
 nav.navbar li {
     display: flex;
     align-items: center;
+}
+
+h3.user-name{
+    padding-right: 6px;
+}
+
+.profile-icon {
+    cursor: pointer;
+    max-height: 35px;
+    max-width: 35px;
+}
+
+.notification-icon {
+    font-size: 24px;
 }
