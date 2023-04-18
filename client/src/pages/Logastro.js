@@ -53,10 +53,18 @@ const Logastro = () => {
         }
     }
 
+
+    function wait(time) {
+        return new Promise(resolve => {
+          setTimeout(resolve, time);
+        });
+      }
+
     const handleSubmitLogin = async (data) => {
         try {   
             const res = await login(inputsLogin)
             console.log(res)
+            await wait(500);
             navigate('/home')
         } catch (err) {
             setErr(err.response.data)

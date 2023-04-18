@@ -1,31 +1,51 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins");
 
-nav.navbar {
+.navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 70px;
+    height: 60px;
     padding: 10px 64px;
 
-    box-shadow: rgba(22, 22, 22, 0.12) 0px 1px 3px, rgba(255, 255, 255, 0.24) 0px 1px 2px;
+    box-shadow: rgba(22, 22, 22, 0.12) 0px 2px 3px, rgba(255, 255, 255, 0.24) 0px 3px 2px;
 }
 
-nav.navbar img {
-    max-height: 90%;
+.navbar img {
+    max-height: 100%;
     max-width: 100%;
     object-fit: contain;
 }
 
-nav.navbar ul {
+.navbar ul {
+    height: 100%;
     display: flex;
-    gap: 20px;
     align-items: center;
     list-style-type: none;
 }
 
-nav.navbar li {
+.navbar li {
     display: flex;
     align-items: center;
+    height: 45px;
+    width: 45px;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar button {
+    transition: all 300ms;
+}
+
+.navbar button:hover {
+    color: #6e6e6e;
 }
 
 h3.user-name{
@@ -34,10 +54,50 @@ h3.user-name{
 
 .profile-icon {
     cursor: pointer;
-    max-height: 35px;
-    max-width: 35px;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    background-color: rgba(240, 240, 240, 0.527);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 26px;
 }
 
 .notification-icon {
     font-size: 24px;
+}
+
+
+
+.prof-dropdown {
+    position: absolute;
+    top: 58px;
+    width: 165px;
+    transform: translateX(-70%);
+    border: 1px solid rgb(156, 156, 156);
+    border-radius: 6px;
+    background-color: rgb(255, 255, 255);
+    padding: 0.5rem;
+
+    transition: all 300ms;
+}
+
+.prof-item {
+    height: 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    border-radius: 6px;
+    transition: background 300ms;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.prof-item:hover {
+    background-color: #f3f3f3;
 }
