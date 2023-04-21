@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import Navbar from './Navbar'
-import UserDashboard from './UserDashboard'
 import '../styles/Home.css'
 import { AuthContext } from '../contexts/authContext'
+import { Outlet } from 'react-router-dom'
 
 function Home() {
 
@@ -12,7 +12,7 @@ function Home() {
   return (
     <>
     <Navbar currentUser={currentUser} logout={logout} />
-    <UserDashboard currentUser={currentUser} />
+    <Outlet />
     </>
   )
 }

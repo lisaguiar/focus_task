@@ -1,9 +1,13 @@
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
 
+import './App.css'
+
 import Home from './pages/Home'
 import Logastro from './pages/Logastro'
 import Logado from './pages/Logado'
-import './App.css'
+import UserDashboard from './pages/UserDashboard'
+import Note from './pages/Note'
+
 
 const Layout = () => {
   return (
@@ -22,11 +26,20 @@ const router = createBrowserRouter ([
       {
         path:'/', element: <Logastro/>
       },
+      
       {
-        path:'/logado', element: <Logado/>
-      },
-      {
-        path:'/home', element: <Home/>
+        path:'/home', element: <Home/>,
+        children:[
+          {
+            path:'', element: <UserDashboard />
+          },
+          {
+            path:'note', element: <Note />
+          },
+          {
+            path:'logado', element: <Logado/>
+          }
+        ]
       }
     ]
     

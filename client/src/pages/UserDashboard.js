@@ -1,22 +1,11 @@
 import React from 'react';
 import '../styles/UserDashboard.css';
 import { AiOutlineFileText, AiOutlineProject } from 'react-icons/ai'
+import { Link } from 'react-router-dom';
 
-function UserDashboard(currentUser) {
+function UserDashboard() {
   
-  function getUserFiles ( id ) {
-    
-  }
   
-
-
-
-  
-
-
-
-
-
   
   return (
     <main className='user-dashboard'>
@@ -31,14 +20,14 @@ function UserDashboard(currentUser) {
         <hr></hr>
         <div className='new-file'>
             
-            <NewFile icon={<AiOutlineFileText/>} name="Anotação" />
+            <Link to={'note'}> <NewFile icon={<AiOutlineFileText/>} name="Anotação" /> </Link>
 
             <NewFile icon={<AiOutlineProject/>} name="Kanban" />
             
             
         </div>
 
-        {/* <textarea rows={1} placeholder='Digite sua anotação!' style={{width: 500 + "px", minHeight: "min-content", border: "none", fontWeight: 700}}></textarea> */}
+        
         
 
     </main>

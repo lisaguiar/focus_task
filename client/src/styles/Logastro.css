@@ -19,14 +19,14 @@ body:has(#container) {
 
 }
 
-h1 {
+.container h1 {
   font-weight: 700;
   letter-spacing: -1.5px;
   margin: 0;
   margin-bottom: 15px;
 }
 
-h1.title {
+.container h1.title {
   font-size: 45px;
   line-height: 45px;
   margin: 0;
@@ -42,12 +42,12 @@ h1.title {
   text-shadow: 0 0 10px rgba(16, 64, 74, 0.5);
 }
 
-span {
+.container span {
   font-size: 14px;
   margin-top: 25px;
 }
 
-a {
+.container a {
   color: #333;
   font-size: 14px;
   text-decoration: none;
@@ -55,7 +55,7 @@ a {
   transition: 0.3s ease-in-out;
 }
 
-a:hover {
+.container a:hover {
   color: #4bb6b7;
 }
 

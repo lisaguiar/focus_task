@@ -12,7 +12,6 @@ function Navbar({ currentUser, logout}) {
   const navigate = useNavigate()
 
   function handleLogout() {
-    setProfDropIsOpen(!profDropIsOpen);
     logout();
     navigate('/');
   }
@@ -21,7 +20,7 @@ function Navbar({ currentUser, logout}) {
   function ProfDropdown () {
     return (
       <div className="prof-dropdown">
-        <button className="prof-item" onClick={() => navigate('/Logado')}>
+        <button className="prof-item" onClick={() => navigate('logado')}>
           <MdPerson2 />
           Perfil
         </button>
