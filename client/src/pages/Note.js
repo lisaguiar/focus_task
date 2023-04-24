@@ -1,5 +1,5 @@
 import '../styles/Note.css'
-import React, { useState, useCallback, useMemo } from 'react'
+import React, { useState, useCallback } from 'react'
 import { Editor, Element, Text, Transforms, createEditor } from 'slate'
 import { Slate, Editable, withReact } from 'slate-react'
 
@@ -68,12 +68,15 @@ function Note() {
 
     return (
         <div className='md'>
-            <Slate editor={editor} value={initialValue} >
+            <Slate editor={editor} value={initialValue} 
+                
+            >
                 <Editable 
                     renderElement={renderElement} 
                     renderLeaf={renderLeaf}
 
                     onKeyDown={(event) => {
+                        
                         if(!event.ctrlKey) {
                             return
                         }
@@ -95,7 +98,7 @@ function Note() {
                                 break
                             }
 
-
+                            
                             default: {
                                 break
                             }

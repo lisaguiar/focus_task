@@ -9,7 +9,7 @@ const Logado = () => {
 
     function handleLogout() {
         logout();
-        navigate('/');
+        navigate('/logastro');
       }
     
     return (

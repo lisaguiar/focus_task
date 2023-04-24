@@ -6,3 +6,76 @@
     padding: 0;
     font-family: "Poppins", sans-serif;
 }
+
+
+hr {
+    margin: 12px 0;
+}
+
+main.user-dashboard {
+    margin: 2rem 12vw;
+    min-width: 330px;
+}
+
+.user-files {
+    margin-bottom: 5rem;
+    flex-wrap: wrap;
+
+    display: flex;
+    gap: 12px;
+}
+
+.user-files .file {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+    flex-wrap: nowrap;
+
+    padding: 6px;
+
+    border: 1px solid rgb(196, 196, 196);
+    border-radius: 6px;
+    width: 120px;
+    font-size: 16px;
+}
+
+.user-files .file .link {
+    width: 100%;
+    flex: 1;
+    overflow: hidden;
+}
+
+.user-files .file h3 {
+    white-space: nowrap;
+}
+
+
+
+
+
+.new-file {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.new-file .new-file-card {
+    flex-grow: 1;
+    flex-shrink: 0;
+    height: 250px;
+    min-width: 330px;
+    max-width: 340px;
+    background-color: rgb(252, 252, 252);
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid rgb(238, 238, 238);
+    box-shadow: 0 4px 35px rgba(0, 0, 0, 0.1);
+}
+
+.new-file-card .card-head {
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    gap: 0.5rem;
+}

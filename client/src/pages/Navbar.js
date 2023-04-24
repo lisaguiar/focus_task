@@ -4,23 +4,25 @@ import "../styles/Navbar.css";
 import { MdNotifications } from 'react-icons/md';
 import { MdPerson2, MdLogout } from 'react-icons/md';
 
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 function Navbar({ currentUser, logout}) {
 
   const [profDropIsOpen, setProfDropIsOpen] = useState(false);
   const navigate = useNavigate()
 
+  
+
   function handleLogout() {
     logout();
-    navigate('/');
+    navigate('/logastro');
   }
 
 
   function ProfDropdown () {
     return (
       <div className="prof-dropdown">
-        <button className="prof-item" onClick={() => navigate('logado')}>
+        <button className="prof-item" onClick={() => {setProfDropIsOpen(!profDropIsOpen); navigate('/logado')}}>
           <MdPerson2 />
           Perfil
         </button>
@@ -35,11 +37,13 @@ function Navbar({ currentUser, logout}) {
 
 
 
-
   return (
     <>
       <nav className="navbar">
-        <img src={jorge} alt="JORGE" />
+        <Link to={'/'}>
+          <img src={jorge} alt="JORGE" />
+        </Link>
+        
         <ul>
           <li>
             <button className="notification-icon">
