@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import jorge from "../images/jorgeCopia.png";
 import "../styles/Navbar.css";
 import { MdNotifications } from 'react-icons/md';
 import { MdPerson2, MdLogout } from 'react-icons/md';
 
 import { useNavigate, Link } from 'react-router-dom'
+import { AuthContext } from "../contexts/authContext";
 
-function Navbar({ currentUser, logout}) {
+function Navbar() {
 
-  const [profDropIsOpen, setProfDropIsOpen] = useState(false);
+  const { currentUser, logout } = useContext(AuthContext)
   const navigate = useNavigate()
+  const [profDropIsOpen, setProfDropIsOpen] = useState(false);
 
-  
+  useEffect (() => {
+    if(!currentUser) {
+      navigate('/logastro')
+    }
+  }, [currentUser, navigate])
+
 
   function handleLogout() {
     logout();
@@ -27,7 +34,7 @@ function Navbar({ currentUser, logout}) {
           Perfil
         </button>
   
-        <button className="prof-item" onClick={handleLogout}>
+        <button className="prof-item logout" onClick={handleLogout}>
           <MdLogout />
           Sair
         </button>
@@ -50,7 +57,7 @@ function Navbar({ currentUser, logout}) {
               <MdNotifications />
             </button>
           </li>
-          <h3 className="user-name">Bem vindo, {currentUser.usu_nome}! </h3>
+          <h3 className="user-name">Bem vindo, {currentUser?.usu_nome}! </h3>
           <li>
             <button className="profile-icon" onClick={() => setProfDropIsOpen(!profDropIsOpen)}>
               <MdPerson2 />

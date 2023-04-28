@@ -1,4 +1,140 @@
 .md {
-    width: 600px;
+    width: 900px;
     margin: 32px auto;
+    padding-bottom: 32px;
+}
+
+.md-nav {
+    background-color: rgb(252, 252, 252);
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid rgb(238, 238, 238);
+    box-shadow: 0 4px 35px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.md-nav .nav-item {
+    padding: 6px;
+
+    background-color: rgb(245, 245, 245);
+    border: 1px solid rgb(196, 196, 196);
+    border-radius: 6px;
+    width: 160px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.md-nav .nav-item.delete {
+    color: rgb(243, 63, 63);
+}
+
+.md-nav .nav-item.delete:hover {
+    color: rgb(245, 245, 245);
+    background-color: rgb(243, 63, 63);
+}
+
+
+.md .md-editor {
+    width: 800px;
+    margin: 6px auto;
+}
+
+.md .md-editor > :last-child {
+    padding-bottom: 255px;
+}
+
+.md #slate-title {
+    padding: 20px 0;
+    font-size: 2.5em;
+}
+
+.md h1 {
+    font-size: 2em;
+}
+
+.md h2 {
+    font-size: 1.8em;
+}
+
+.md h3 {
+    font-size: 1.6em;
+}
+
+.md h1 span, h2 span, h3 span {
+    font-weight: bold !important;
+}
+
+.md-menu {
+    padding: 12px;
+    position: absolute;
+    z-index: 1;
+    top: -10000px;
+    left: -10000px;
+    margin-top: -6px;
+    opacity: 0;
+    background-color: #fcfcfc;
+    border-radius: 4px;
+    transition: opacity 0.75s;
+    box-sizing: border-box;
+
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    overflow-y: auto;
+    height: 160px;
+}
+
+.md-menu-title {
+    font-size: 12px;
+    color: #555555;
+    cursor: default;
+}
+
+.md-menu-button {
+    padding: 8px 12px;
+    text-align: start;
+    outline: transparent;
+    border: none;
+    background-color: #f7f7f7;
+    border-radius: 4px;
+    font-size: 14px;
+
+    transition: all 0.3s;
+    cursor: pointer;
+
+    min-width: 100px;
+}
+
+.md-menu-button:hover {
+    background-color: #e4e4e4;
+}
+
+.md-menu-button.active {
+    background-color: #eff8db;
+}
+
+
+
+
+
+.md-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.md-menu::-webkit-scrollbar-track {
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    border: 1px solid #e6e6e6;
+}
+
+.md-menu::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #b9b9b9;
 }

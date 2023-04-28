@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
 
 import './App.css'
@@ -9,16 +9,14 @@ import Logado from './pages/Logado'
 import Note from './pages/Note'
 import Navbar from './pages/Navbar'
 
-import { AuthContext } from './contexts/authContext'
 
 const Layout = () => {
 
-  const { currentUser, logout } = useContext(AuthContext)
 
   return (
     <>
       <div>
-        <Navbar currentUser={currentUser} logout={logout} />
+        <Navbar />
         <Outlet/>
       </div>
     </>
