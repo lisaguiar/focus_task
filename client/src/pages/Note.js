@@ -45,13 +45,10 @@ function Note() {
         if (res.data) {
           let data = res.data;
           setNoteData(data);
-          // console.log(data);
 
           if (res.data.ano_conteudo) {
             let conteudo = JSON.parse(res.data.ano_conteudo);
             setInicialValue(conteudo);
-
-            // console.log(conteudo);
           }
           setIsLoading(false);
         } else {
