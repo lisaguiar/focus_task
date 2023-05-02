@@ -7,12 +7,17 @@ const Logado = () => {
     const { currentUser, logout } = useContext(AuthContext)
     const navigate = useNavigate()
 
+    function handleLogout() {
+        logout();
+        navigate('/logastro');
+      }
+    
     return (
-        <div className="container" id="container">
+        <div>
             <center>
                 <h2>Bem-vindo, {currentUser.usu_nome}!</h2>
                 <h3>Email: {currentUser.usu_email}</h3>
-                <button onClick={logout}>Logout</button>
+                <button onClick={handleLogout}>Logout</button>
             </center>
                 
         </div>

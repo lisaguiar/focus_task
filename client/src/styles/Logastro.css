@@ -7,7 +7,7 @@
   width: 15vw;
 }
 
-body {
+body:has(#container) {
   display: flex;
   background-image: url("../images/image6.png");
   justify-content: center;
@@ -19,21 +19,21 @@ body {
 
 }
 
-h1 {
+.container h1 {
   font-weight: 700;
   letter-spacing: -1.5px;
   margin: 0;
   margin-bottom: 15px;
 }
 
-h1.title {
+.container h1.title {
   font-size: 45px;
   line-height: 45px;
   margin: 0;
   text-shadow: 0 0 10px rgba(16, 64, 74, 0.5);
 }
 
-p {
+.container p {
   font-size: 14px;
   font-weight: 100;
   line-height: 20px;
@@ -42,12 +42,12 @@ p {
   text-shadow: 0 0 10px rgba(16, 64, 74, 0.5);
 }
 
-span {
+.container span {
   font-size: 14px;
   margin-top: 25px;
 }
 
-a {
+.container a {
   color: #333;
   font-size: 14px;
   text-decoration: none;
@@ -55,7 +55,7 @@ a {
   transition: 0.3s ease-in-out;
 }
 
-a:hover {
+.container a:hover {
   color: #4bb6b7;
 }
 
@@ -85,7 +85,7 @@ a:hover {
   padding-left: 5px;
 }
 
-button {
+.container button {
   position: relative;
   border-radius: 20px;
   border: 1px solid #4bb6b7;
@@ -100,44 +100,44 @@ button {
   transition: 0.3s ease-in-out;
 }
 
-button:hover {
+.container button:hover {
   letter-spacing: 3px;
 }
 
-button:active {
+.container button:active {
   transform: scale(0.95);
 }
 
-button:focus {
+.container button:focus {
   outline: none;
 }
 
-button.ghost {
+.container button.ghost {
   background-color: rgba(225, 225, 225, 0.2);
   border: 2px solid #fff;
   color: #fff;
 }
 
-button.ghost i{
+.container button.ghost i{
   position: absolute;
   opacity: 0;
   transition: 0.3s ease-in-out;
 }
 
-button.ghost i.register{
+.container button.ghost i.register{
   right: 70px;
 }
 
-button.ghost i.login{
+.container button.ghost i.login{
   left: 70px;
 }
 
-button.ghost:hover i.register{
+.container button.ghost:hover i.register{
   right: 40px;
   opacity: 1;
 }
 
-button.ghost:hover i.login{
+.container button.ghost:hover i.login{
   left: 40px;
   opacity: 1;
 }

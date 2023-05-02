@@ -1,13 +1,25 @@
+import React, { useContext } from 'react'
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
 
-import Logastro from './pages/Logastro'
-import Logado from './pages/Logado'
 import './App.css'
 
+import Home from './pages/Home'
+import Logastro from './pages/Logastro'
+import Logado from './pages/Logado'
+import Note from './pages/Note'
+import Navbar from './pages/Navbar'
+
+import { AuthContext } from './contexts/authContext'
+import Kanban from './pages/Kanban'
+
 const Layout = () => {
+
+  const { currentUser, logout } = useContext(AuthContext)
+
   return (
     <>
-      <div className='container'>
+      <div>
+        <Navbar currentUser={currentUser} logout={logout} />
         <Outlet/>
       </div>
     </>
@@ -17,15 +29,23 @@ const Layout = () => {
 const router = createBrowserRouter ([
   {
     path:'/', element: <Layout/>,
-    children: [
+    children:[
       {
-        path:'/', element: <Logastro/>
+        path:'/', element: <Home/>,
+      },
+      {
+        path:'/note/:id', element: <Note />
       },
       {
         path:'/logado', element: <Logado/>
-      }
+      },
+      {path:'/kanban', element: <Kanban/>}
     ]
-  }
+  },
+  {
+    path:'/logastro', element: <Logastro/>
+  },
+
 ])
 
 function App() {

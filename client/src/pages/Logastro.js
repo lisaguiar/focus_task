@@ -53,11 +53,19 @@ const Logastro = () => {
         }
     }
 
+
+    function wait(time) {
+        return new Promise(resolve => {
+          setTimeout(resolve, time);
+        });
+      }
+
     const handleSubmitLogin = async (data) => {
         try {   
             const res = await login(inputsLogin)
             console.log(res)
-            navigate('/logado')
+            await wait(500);
+            navigate('/')
         } catch (err) {
             setErr(err.response.data)
             console.log(err)
@@ -141,7 +149,7 @@ const Logastro = () => {
                             <label>lembre-me</label>
                         </div>
                         <div className="pass-link">
-                            <a href="#">Esqueci a senha</a>
+                            <a href="./">Esqueci a senha</a>
                         </div>
                     </div>
                     <button disabled={!isValidLogin} type="submit">Login</button>
