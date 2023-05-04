@@ -1,146 +1,157 @@
-import '../styles/Note.css'
-import React, { useState, useCallback } from 'react'
-import { Editor, Element, Text, Transforms, createEditor } from 'slate'
-import { Slate, Editable, withReact } from 'slate-react'
+import "../styles/Note.css";
+import React, { useState, useCallback, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  createEditor,
+} from "slate";
+import { Slate, Editable, withReact } from "slate-react";
+import { withHistory } from "slate-history";
+
+import { withLayout } from "../functions/CustomLayout";
+import { Element, Leaf } from "../functions/BlockTypes";
+import { FormatToolbar } from "../functions/FormatToolbar";
+
+import axios from "../api/axios";
+import moment from "moment";
+import 'moment/locale/pt-br'
+
+
 
 function Note() {
+  const [isLoading, setIsLoading] = useState(true);
 
-    const [editor] = useState(() => withReact(createEditor()));
+  const [initialValue, setInicialValue] = useState([
+    {
+      type: "title",
+      children: [{ text: "Sem título" }],
+    },
+    {
+      type: "paragraph",
+      children: [{ text: "Comece sua anotação!" }],
+    },
+  ]);
+  const [noteData, setNoteData] = useState();
 
-    const initialValue = [
-        {
-            type: "paragraph",
-            children: [{ text: "Comece sua anotação!"}],
-        },
-    ]
+  const anoId = useLocation().pathname.split("/")[2];
 
+  const navigate = useNavigate();
 
-    const renderElement = useCallback((props) => {
-        switch (props.element.type) {
-            case "heading":
-                return <HeadingElement {...props} />;
-            default: 
-                return <DefaultElement {...props} />;
+  useEffect(() => {
+    const fetchNote = async (anoId) => {
+      try {
+        const res = await axios.get(`/api/note/${anoId}`);
+
+        if (res.data) {
+          let data = res.data;
+          setNoteData(data);
+
+          if (res.data.ano_conteudo) {
+            let conteudo = JSON.parse(res.data.ano_conteudo);
+            setInicialValue(conteudo);
+          }
+          setIsLoading(false);
+        } else {
+          navigate("/");
         }
-    }, []);
-
-    const renderLeaf = useCallback((props) => {
-        return <Leaf {...props} />
-    }, []);
-
-
-    const CustomEditor = {
-        isBoldMarkActive(editor) {
-            const [match] = Editor.nodes(editor, {
-                match: n => n.bold === true,
-                universal: true
-            })
-            return !!match
-        },
-
-        isHeadingActive(editor) {
-            const [match] = Editor.nodes(editor, {
-                match: n => n.type === "heading",
-            })
-            return !!match
-        },
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    
+    fetchNote(anoId);
+  }, [anoId, navigate]);
 
 
-        toggleBoldMark(editor) {
-            const isActive = CustomEditor.isBoldMarkActive(editor)
-            Transforms.setNodes(
-                editor,
-                { bold: isActive ? null : true },
-                { match: n => Text.isText(n), split: true }
-            )
-        },
+  const [editor] = useState(() =>
+    withLayout(withReact(withHistory(createEditor())))
+  );
 
-        toggleHeading(editor) {
-            const isActive = CustomEditor.isHeadingActive(editor)
-            Transforms.setNodes(
-                editor,
-                { type: isActive ? null : "heading" },
-                { match: (n) => Element.isElement(n) && Editor.isBlock(editor, n) }
-            )
-        }
+  async function handleDelete() {
+    try {
+      await axios.delete(`/api/note/${anoId}`);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
     }
+  }
+
+  async function handleUpdate(value) {
+    try {
+      
+      let tempTitle = JSON.parse(noteData.ano_conteudo)[0].children[0].text;
+
+      let titulo = { ano_titulo: tempTitle };
+      let conteudo = { ano_conteudo: JSON.stringify(value) };
+
+      setNoteData((noteData) => ({
+        ...noteData,
+        ...titulo,
+        ...conteudo,
+      }));
+
+      let newTitle = noteData.ano_titulo;
+      let newConteudo = noteData.ano_conteudo;
+
+      await axios.put(`/api/note/${anoId}`, {
+        titulo: newTitle,
+        conteudo: newConteudo,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  // ====================== //
+  // Slate render functions //
+  // ====================== //
+
+  const renderElement = useCallback((props) => <Element {...props} />, []);
+  const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
 
 
-    return (
-        <div className='md'>
-            <Slate editor={editor} value={initialValue} 
-                
-            >
-                <Editable 
-                    renderElement={renderElement} 
-                    renderLeaf={renderLeaf}
-
-                    onKeyDown={(event) => {
-                        
-                        if(!event.ctrlKey) {
-                            return
-                        }
-
-                        switch(event.key) {
-                            case ',': {
-                                event.preventDefault();
-
-                                CustomEditor.toggleHeading(editor)
-
-                                break
-                            }
-
-                            case 'b': {
-                                event.preventDefault();
-
-                                CustomEditor.toggleBoldMark(editor)
-
-                                break
-                            }
-
-                            
-                            default: {
-                                break
-                            }
-                        }
-
-
-                    }}
-                />
-            </Slate>
-        </div>
-    )
-}
-
-
-
-const DefaultElement = (props) => {
-    return <p {...props.attributes}>{props.children}</p>;
-};
-
-
-const HeadingElement = (props) => {
-    return (
-        <h1 {...props.attributes}>
-            {props.children}
-        </h1>
-    );
-};
-
-
-const Leaf = (props) => {
-    return (
-        <span 
-            {...props.attributes}
-            style={{fontWeight: props.leaf.bold ? 'bold' : 'normal' }}
+  return (
+    <>
+      {isLoading ? (
+        <h3
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "300px",
+          }}
         >
-            {props.children}
-        </span>
-    )
+          Loading
+        </h3>
+      ) : (
+        <div className="md">
+          <div className="md-nav">
+            <div>Criado em {moment(noteData?.ano_dtCriacao).format('LLL')}</div>
+            <button className="nav-item delete" onClick={handleDelete}>
+              Excluir Anotação
+            </button>
+          </div>
+          <div className="md-editor">
+            <Slate
+              editor={editor}
+              value={initialValue}
+              onChange={(value) => {
+                handleUpdate(value);
+              }}
+            >
+              <FormatToolbar />
+              <Editable
+                renderElement={renderElement}
+                renderLeaf={renderLeaf}
+                placeholder="Sem título"
+                autoFocus
+              />
+            </Slate>
+          </div>
+        </div>
+      )}
+    </>
+  );
 }
 
 
-
-
-
-export default Note
+export default Note;

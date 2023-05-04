@@ -30,7 +30,7 @@
     width: 45px;
 }
 
-button {
+.navbar button {
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -44,7 +44,7 @@ button {
     transition: all 300ms;
 }
 
-.navbar button:hover {
+.navbar li > button:hover {
     color: #6e6e6e;
 }
 
@@ -85,7 +85,7 @@ h3.user-name{
     transition: all 300ms;
 }
 
-.prof-item {
+.prof-dropdown > .prof-item {
     height: 30px;
     width: 100%;
     display: flex;
@@ -94,10 +94,17 @@ h3.user-name{
     gap: 0.5rem;
     border-radius: 6px;
     transition: background 300ms;
-    padding: 0.5rem;
+    padding: 2px 12px;
+    margin: 6px 0;
     font-size: 1.2rem;
+
 }
 
 .prof-item:hover {
-    background-color: #f3f3f3;
+    background-color: #aace62;
+    color: white;
+}
+
+.prof-item.logout:hover {
+    background-color: rgb(241, 92, 92);
 }

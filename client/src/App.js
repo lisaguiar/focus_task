@@ -9,8 +9,6 @@ import Logado from './pages/Logado'
 import Note from './pages/Note'
 import Navbar from './pages/Navbar'
 
-import { AuthContext } from './contexts/authContext'
-import Kanban from './pages/Kanban'
 
 const Layout = () => {
 
@@ -19,7 +17,7 @@ const Layout = () => {
   return (
     <>
       <div>
-        <Navbar currentUser={currentUser} logout={logout} />
+        <Navbar />
         <Outlet/>
       </div>
     </>
@@ -41,11 +39,10 @@ const router = createBrowserRouter ([
       },
       {path:'/kanban', element: <Kanban/>}
     ]
-  },
+  }
   {
     path:'/logastro', element: <Logastro/>
   },
-
 ])
 
 function App() {

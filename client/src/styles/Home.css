@@ -36,8 +36,17 @@ main.user-dashboard {
 
     border: 1px solid rgb(196, 196, 196);
     border-radius: 6px;
-    width: 120px;
+    width: 130px;
     font-size: 16px;
+}
+
+.user-files .file:hover {
+    background-color: #bce07d;
+    color: white;
+}
+
+.user-files .file:hover h3 {
+    color: white;
 }
 
 .user-files .file .link {
@@ -60,9 +69,10 @@ main.user-dashboard {
     flex-wrap: wrap;
 }
 
-.new-file .new-file-card {
+.new-file-card {
     flex-grow: 1;
     flex-shrink: 0;
+    
     height: 250px;
     min-width: 330px;
     max-width: 340px;
@@ -71,6 +81,13 @@ main.user-dashboard {
     border-radius: 12px;
     border: 1px solid rgb(238, 238, 238);
     box-shadow: 0 4px 35px rgba(0, 0, 0, 0.1);
+
+    cursor: pointer;
+}
+
+.new-file-card:hover {
+    background-color: #bce07d;
+    color: white;
 }
 
 .new-file-card .card-head {

@@ -15,8 +15,8 @@ const Logado = () => {
     return (
         <div>
             <center>
-                <h2>Bem-vindo, {currentUser.usu_nome}!</h2>
-                <h3>Email: {currentUser.usu_email}</h3>
+                <h2>Bem-vindo, {currentUser?.usu_nome}!</h2>
+                <h3>Email: {currentUser?.usu_email}</h3>
                 <button onClick={handleLogout}>Logout</button>
             </center>
                 
