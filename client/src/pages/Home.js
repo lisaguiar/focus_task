@@ -62,7 +62,7 @@ function Home() {
       <div className="new-file"> 
         <NewFile icon={<AiOutlineFileText />} name="Anotação" onClick={handleNewNote} />{" "}
        
-        <NewFile icon={<AiOutlineProject />} name="Kanban" />
+        <NewFile icon={<AiOutlineProject />} name="Kanban" onClick={() => navigate('/kanban')} />
       </div>
     </main>
   );
