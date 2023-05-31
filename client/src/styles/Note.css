@@ -16,10 +16,26 @@
     justify-content: space-between;
 }
 
-.md-nav .nav-item {
+.md-nav .options {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+    justify-content: flex-end;
+    width: 290px;
+}
+
+.md-nav p {
+    color: #7e7e7e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.md-nav .nav-btn {
     padding: 6px;
 
-    background-color: rgb(245, 245, 245);
+    background-color: rgb(250, 250, 250);
     border: 1px solid rgb(196, 196, 196);
     border-radius: 6px;
     width: 160px;
@@ -29,11 +45,12 @@
     cursor: pointer;
 }
 
-.md-nav .nav-item.delete {
+.md-nav .nav-btn.delete {
+    border: 1px solid rgb(243, 63, 63);
     color: rgb(243, 63, 63);
 }
 
-.md-nav .nav-item.delete:hover {
+.md-nav .nav-btn.delete:hover {
     color: rgb(245, 245, 245);
     background-color: rgb(243, 63, 63);
 }

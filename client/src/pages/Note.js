@@ -13,12 +13,16 @@ import { FormatToolbar } from "../functions/FormatToolbar";
 
 import axios from "../api/axios";
 import moment from "moment";
-import 'moment/locale/pt-br'
+import 'moment/locale/pt-br';
+
+import { BsCloudArrowUp, BsCloudCheck } from "react-icons/bs";
 
 
 
 function Note() {
   const [isLoading, setIsLoading] = useState(true);
+
+  const [isSaving, setIsSaving] = useState(false);
 
   const [initialValue, setInicialValue] = useState([
     {
@@ -77,8 +81,9 @@ function Note() {
 
   async function handleUpdate(value) {
     try {
-      
-      let tempTitle = JSON.parse(noteData.ano_conteudo)[0].children[0].text;
+      let tempTitle = JSON.parse(noteData.ano_conteudo) 
+      ? JSON.parse(noteData.ano_conteudo)[0].children[0].text 
+      : "Sem título";
 
       let titulo = { ano_titulo: tempTitle };
       let conteudo = { ano_conteudo: JSON.stringify(value) };
@@ -88,18 +93,30 @@ function Note() {
         ...titulo,
         ...conteudo,
       }));
-
-      let newTitle = noteData.ano_titulo;
-      let newConteudo = noteData.ano_conteudo;
-
-      await axios.put(`/api/note/${anoId}`, {
-        titulo: newTitle,
-        conteudo: newConteudo,
-      });
+      
     } catch (err) {
       console.log(err);
     }
   }
+
+  useEffect(() => {
+    const updateBdNote = setTimeout(() => {
+      setIsSaving(true);
+      let newTitle = noteData.ano_titulo;
+      let newConteudo = noteData.ano_conteudo;
+  
+      axios.put(`/api/note/${anoId}`, {
+        titulo: newTitle,
+        conteudo: newConteudo,
+      });
+
+    }, 2000)
+    
+    return () => {
+      clearTimeout(updateBdNote)
+      setIsSaving(false);
+    }
+  }, [noteData, anoId])
 
   // ====================== //
   // Slate render functions //
@@ -126,9 +143,23 @@ function Note() {
         <div className="md">
           <div className="md-nav">
             <div>Criado em {moment(noteData?.ano_dtCriacao).format('LLL')}</div>
-            <button className="nav-item delete" onClick={handleDelete}>
-              Excluir Anotação
-            </button>
+            <div className="options">
+              {isSaving ? 
+              <p>
+                <BsCloudCheck />
+                Salvo
+              </p>
+              : 
+              <p>
+                <BsCloudArrowUp />
+                Salvando...
+              </p>}
+              
+
+              <button className="nav-btn delete" onClick={handleDelete}>
+                Excluir Anotação
+              </button>
+            </div>
           </div>
           <div className="md-editor">
             <Slate
