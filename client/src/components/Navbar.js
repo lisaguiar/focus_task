@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import jorge from "../images/jorgeCopia.png";
 import "../styles/Navbar.css";
 import { MdNotifications } from 'react-icons/md';
@@ -11,14 +11,8 @@ function Navbar() {
 
   const { currentUser, logout } = useContext(AuthContext)
   const navigate = useNavigate()
+
   const [profDropIsOpen, setProfDropIsOpen] = useState(false);
-
-  useEffect (() => {
-    if(!currentUser) {
-      navigate('/logastro')
-    }
-  }, [currentUser, navigate])
-
 
   function handleLogout() {
     logout();
@@ -29,7 +23,7 @@ function Navbar() {
   function ProfDropdown () {
     return (
       <div className="prof-dropdown">
-        <button className="prof-item" onClick={() => {setProfDropIsOpen(!profDropIsOpen); navigate('/logado')}}>
+        <button className="prof-item" onClick={() => {setProfDropIsOpen(!profDropIsOpen); navigate('/perfil')}}>
           <MdPerson2 />
           Perfil
         </button>

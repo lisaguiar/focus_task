@@ -1,19 +1,28 @@
-import React, { useContext } from 'react'
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
+import React, { useContext, useEffect } from 'react'
+import { createBrowserRouter, RouterProvider, Outlet, useNavigate } from 'react-router-dom'
+import { AuthContext } from "./contexts/authContext";
 
 import './App.css'
 
 import Home from './pages/Home'
 import Logastro from './pages/Logastro'
-import Logado from './pages/Logado'
+import Perfil from './pages/Perfil'
 import Note from './pages/Note'
-import Navbar from './pages/Navbar'
+import Navbar from './components/Navbar'
 import Kanban from './pages/Kanban'
 
 
 const Layout = () => {
 
+  const { currentUser } = useContext(AuthContext)
+  const navigate = useNavigate()
   
+
+  useEffect (() => {
+    if(!currentUser) {
+      navigate('/logastro')
+    }
+  }, [currentUser, navigate])
 
   return (
     <>
@@ -36,7 +45,7 @@ const router = createBrowserRouter ([
         path:'/note/:id', element: <Note />
       },
       {
-        path:'/logado', element: <Logado/>
+        path:'/perfil', element: <Perfil/>
       },
       {path:'/kanban', element: <Kanban/>}
     ]

@@ -1,0 +1,95 @@
+.profile-container {
+    padding: 42px;
+}
+
+hr {
+    margin-top: 24px;
+    border-color: rgba(255, 255, 255, 0.363);
+}
+
+.profile-container p {
+    color: rgb(143, 143, 143);
+}
+
+.profile-heading {
+    padding: 12px;
+}
+
+.profile-settings {
+    min-height: 400px;
+    display: flex;
+    align-items: stretch;
+}
+
+.profile-settings aside {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-right: 24px;
+}
+
+.profile-settings aside button {
+    width: 180px;
+    padding: 12px 16px;
+    font-size: 16px;
+    color: rgb(63, 63, 63);
+    text-align: start;
+    border: transparent;
+    border-radius: 8px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.profile-settings aside button.active {
+    background-color: #d3f09b;
+}
+
+.profile-settings aside button:hover {
+    text-decoration: underline;
+}
+
+
+
+.profile-update-container {
+    width: 700px;
+}
+
+.profile-update-container form {
+    margin-top: 36px;
+}
+
+.profile-update-container form div {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 48px;
+}
+
+.profile-update-container form div label {
+    font-size: 1.07rem;
+    color: rgb(63, 63, 63);
+}
+
+.profile-update-container form div input {
+    padding: 12px 16px;
+    margin: 8px 4px;
+    outline: transparent;
+    border: 1px solid rgb(185, 185, 185);
+    border-radius: 8px;
+}
+
+.profile-update-container form button {
+    width: 120px;
+    padding: 8px;
+    font-size: 18px;
+    border-color: transparent;
+    border-radius: 8px;
+    outline: transparent;
+    background-color: #b7dd6c;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.profile-update-container form button:hover {
+    filter: brightness(1.04);
+}

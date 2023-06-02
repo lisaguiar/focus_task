@@ -7,6 +7,6 @@ router.get('/', getNotes);
 router.get('/:id', getNote);
 router.post('/', createNote);
 router.delete('/:id', deleteNote);
-router.put('/:id', updateNote)
+router.put('/:id', updateNote);
 
 export default router

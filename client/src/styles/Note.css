@@ -16,7 +16,13 @@
     justify-content: space-between;
 }
 
-.md-nav .options {
+.md-nav .created-date {
+    font-size: 12px;
+    font-weight: 700;
+    color: #646464;
+}
+
+.md-nav .info {
     display: flex;
     gap: 22px;
     align-items: center;
@@ -24,7 +30,7 @@
     width: 290px;
 }
 
-.md-nav p {
+.md-nav .save {
     color: #7e7e7e;
     display: flex;
     align-items: center;
@@ -99,7 +105,7 @@
     transition: opacity 0.75s;
     box-sizing: border-box;
 
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 4px;
     
     display: flex;
     flex-direction: column;
@@ -115,6 +121,11 @@
     cursor: default;
 }
 
+.md-menu-inline {
+    display: flex;
+    gap: 6px;
+}
+
 .md-menu-button {
     padding: 8px 12px;
     text-align: start;
@@ -126,8 +137,16 @@
 
     transition: all 0.3s;
     cursor: pointer;
+}
 
-    min-width: 100px;
+.md-menu-button.bold {
+    font-weight: bold;
+}
+.md-menu-button.italic {
+    font-style: italic;
+}
+.md-menu-button.underline {
+    text-decoration: underline;
 }
 
 .md-menu-button:hover {

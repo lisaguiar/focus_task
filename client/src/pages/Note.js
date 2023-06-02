@@ -34,7 +34,7 @@ function Note() {
       children: [{ text: "Comece sua anotação!" }],
     },
   ]);
-  const [noteData, setNoteData] = useState();
+  const [noteData, setNoteData] = useState([]);
 
   const anoId = useLocation().pathname.split("/")[2];
 
@@ -81,11 +81,11 @@ function Note() {
 
   async function handleUpdate(value) {
     try {
-      let tempTitle = JSON.parse(noteData.ano_conteudo) 
+      let title = JSON.parse(noteData.ano_conteudo)[0].children[0].text
       ? JSON.parse(noteData.ano_conteudo)[0].children[0].text 
       : "Sem título";
 
-      let titulo = { ano_titulo: tempTitle };
+      let titulo = { ano_titulo: title };
       let conteudo = { ano_conteudo: JSON.stringify(value) };
 
       setNoteData((noteData) => ({
@@ -142,15 +142,15 @@ function Note() {
       ) : (
         <div className="md">
           <div className="md-nav">
-            <div>Criado em {moment(noteData?.ano_dtCriacao).format('LLL')}</div>
-            <div className="options">
+            <div className="created-date">Criado em {moment(noteData?.ano_dtCriacao).format('LLL')}</div>
+            <div className="info">
               {isSaving ? 
-              <p>
+              <p className="save">
                 <BsCloudCheck />
                 Salvo
               </p>
               : 
-              <p>
+              <p className="save">
                 <BsCloudArrowUp />
                 Salvando...
               </p>}
@@ -166,6 +166,7 @@ function Note() {
               editor={editor}
               value={initialValue}
               onChange={(value) => {
+                
                 handleUpdate(value);
               }}
             >

@@ -69,6 +69,7 @@ const Logastro = () => {
         } catch (err) {
             setErr(err.response.data)
             console.log(err)
+            alert(err.response.data)
         }
     }
 

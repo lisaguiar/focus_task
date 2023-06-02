@@ -1,24 +1,22 @@
-import { Editor, Text, Transforms, Element as SlateElement } from "slate";
+import { Editor, Transforms, Element as SlateElement } from "slate";
 
 // ======================================== //
 // Block type and mark checkers and setters //
 // ======================================== //
 
-export const isBoldMarkActive = (editor) => {
-  const [match] = Editor.nodes(editor, {
-    match: (n) => n.bold === true,
-    universal: true,
-  });
-  return !!match;
+export const isMarkActive = (editor, format) => {
+  const marks = Editor.marks(editor);
+  return marks ? marks[format] === true : false;
 };
 
-export const toggleBoldMark = (editor) => {
-  const isActive = isBoldMarkActive(editor);
-  Transforms.setNodes(
-    editor,
-    { bold: isActive ? null : true },
-    { match: (n) => Text.isText(n), split: true }
-  );
+export const toggleMark = (editor, format) => {
+  const isActive = isMarkActive(editor, format);
+  
+  if(isActive) {
+    Editor.removeMark(editor, format)
+  } else {
+    Editor.addMark(editor, format, true)
+  }
 };
 
 export const isBlockActive = (editor, format) => {
@@ -70,8 +68,20 @@ export const Element = ({ attributes, children, element }) => {
 };
 
 export const Leaf = ({ attributes, leaf, children }) => {
+  if(leaf.bold) {
+    children = <strong>{children}</strong>
+  }
+
+  if(leaf.italic) {
+    children = <em>{children}</em>
+  }
+
+  if(leaf.underline) {
+    children = <u>{children}</u>
+  }
+
   return (
-    <span {...attributes} style={{ fontWeight: leaf.bold ? "bold" : "normal" }}>
+    <span {...attributes}>
       {children}
     </span>
   );

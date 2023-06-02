@@ -4,9 +4,9 @@ import { Editor, Range } from "slate";
 import { useFocused, useSlate } from "slate-react";
 import {
   isBlockActive,
-  isBoldMarkActive,
+  isMarkActive,
   toggleBlock,
-  toggleBoldMark,
+  toggleMark,
 } from "./BlockTypes";
 
 // ================== //
@@ -23,7 +23,7 @@ export const Menu = React.forwardRef(({ ...props }, ref) => (
   <div {...props} ref={ref} />
 ));
 
-export function FormatToolbar () {
+export function FormatToolbar() {
   const ref = useRef();
   const editor = useSlate();
   const inFocus = useFocused();
@@ -40,12 +40,12 @@ export function FormatToolbar () {
       !selection ||
       !inFocus ||
       Range.isCollapsed(selection) ||
-      Editor.string(editor, selection) === "" ||
       Editor.fragment(editor, selection)[0].type === "title"
     ) {
       el.removeAttribute("style");
       return;
     }
+    
 
     const domSelection = window.getSelection();
     const domRange = domSelection.getRangeAt(0);
@@ -68,7 +68,12 @@ export function FormatToolbar () {
         }}
       >
         <div className="md-menu-title">Formatações</div>
-        <FormatButton texto={"Negrito"} />
+        <div className="md-menu-inline">
+          <FormatButton texto={"N"} format={"bold"} />
+          <FormatButton texto={"I"} format={"italic"} />
+          <FormatButton texto={"S"} format={"underline"} />
+        </div>
+        <div className="md-menu-title">Tipos de bloco</div>
         <FormatBlockButton texto={"Título 1"} format={"heading-1"} />
         <FormatBlockButton texto={"Título 2"} format={"heading-2"} />
         <FormatBlockButton texto={"Título 3"} format={"heading-3"} />
@@ -77,14 +82,14 @@ export function FormatToolbar () {
   );
 };
 
-const FormatButton = ({ texto }) => {
+const FormatButton = ({ texto, format }) => {
   const editor = useSlate();
-  const active = isBoldMarkActive(editor) ? " active" : "";
+  const active = isMarkActive(editor, format) ? "active" : "";
   return (
     <button
-      className={"md-menu-button" + active}
+      className={`md-menu-button ${format} ${active}`}
       onClick={() => {
-        toggleBoldMark(editor);
+        toggleMark(editor, format);
       }}
     >
       {texto}
