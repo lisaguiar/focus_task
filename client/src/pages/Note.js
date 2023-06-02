@@ -34,7 +34,7 @@ function Note() {
       children: [{ text: "Comece sua anotação!" }],
     },
   ]);
-  const [noteData, setNoteData] = useState([]);
+  const [noteData, setNoteData] = useState();
 
   const anoId = useLocation().pathname.split("/")[2];
 
@@ -49,7 +49,7 @@ function Note() {
           let data = res.data;
           setNoteData(data);
 
-          if (res.data.ano_conteudo) {
+          if (res.data.ano_conteudo !== null) {
             let conteudo = JSON.parse(res.data.ano_conteudo);
             setInicialValue(conteudo);
           }
@@ -81,9 +81,13 @@ function Note() {
 
   async function handleUpdate(value) {
     try {
-      let title = JSON.parse(noteData.ano_conteudo)[0].children[0].text
-      ? JSON.parse(noteData.ano_conteudo)[0].children[0].text 
-      : "Sem título";
+      let cont = JSON.parse(noteData.ano_conteudo)
+      let title;
+      if(cont === null || cont[0].children[0].text === null) {
+        title = "Sem título";
+      } else {
+        title = JSON.parse(noteData.ano_conteudo)[0].children[0].text 
+      }
 
       let titulo = { ano_titulo: title };
       let conteudo = { ano_conteudo: JSON.stringify(value) };
